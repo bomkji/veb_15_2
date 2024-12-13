@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Modification</title>
+</head>
+<body>
+    <h1>JavaScript Task</h1>
+    <p>Enter your text below:</p>
+    <input type="text" id="inputText" placeholder="Enter your text here">
+    <button onclick="processText()">Process</button>
+
+    <h2>Results:</h2>
+    <p id="modifiedText"></p>
+    <p id="fifthWordCount"></p>
+
+    <script>
+        function processText() {
+            // Get the input text
+            const input = document.getElementById('inputText').value;
+
+            // Split the input into words
+            const words = input.split(/\s+/);
+
+            // Add a period after the last letter of each word
+            const modifiedWords = words.map(word => word + '.');
+
+            // Check the fifth word for occurrences of 'І'
+            let fifthWordIcount = 0;
+            if (words.length >= 5) {
+                const fifthWord = words[4]; // Fifth word (zero-indexed)
+                fifthWordIcount = (fifthWord.match(/І/g) || []).length;
+            }
+
+            // Display results
+            document.getElementById('modifiedText').textContent = `Modified text: ${modifiedWords.join(' ')}`;
+            document.getElementById('fifthWordCount').textContent = `Occurrences of 'І' in the fifth word: ${fifthWordIcount}`;
+        }
+    </script>
+</body>
+</html>
